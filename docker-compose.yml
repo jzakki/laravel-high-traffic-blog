@@ -15,7 +15,7 @@ services:
         networks:
             - laravel_blog_network
         depends_on:
-            - database
+            - postgres
 
     nginx:
         image: nginx:alpine
@@ -29,7 +29,7 @@ services:
         networks:
             - laravel_blog_network
 
-    database:
+    postgres:
         image: postgres:16
         container_name: laravel_blog_postgres
         restart: always
@@ -45,14 +45,14 @@ services:
         ports:
             - "5432:5432"
 
-    phpmyadmin:
+    adminer:
         image: adminer:4.8.1
         container_name: laravel_blog_adminer
         restart: always
         ports:
-            - "8080:80"
-        depends_on:
-            - database
+            - "8080:8080"
+        links:
+            - postgres:db
         networks:
             - laravel_blog_network
 

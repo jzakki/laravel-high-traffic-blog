@@ -67,9 +67,3 @@ sh:
 
 composer-install:
 	$(DOCKER_COMPOSE) exec $(PHP_CONTAINER) composer install
-
-clean: down
-	rm -rf vendor
-	rm -rf storage/framework/*
-	rm -rf bootstrap/cache/*
-	rm -rf .phpunit.result.cache
